@@ -4,12 +4,12 @@
             <div style="text-align: center; font-size: 2.5em">{{nbEmails}}</div>
             <div style="text-align: center">email{{ nbEmails > 1 ? 's' : '' }} sent</div>
         </div>
-        <div style="padding-top: 15px; margin-left: 20px" flex ng-show="app.addons.addonsConfig['email'].from && app.addons.addonsConfig['email'].apikey">
+        <div style="padding-top: 15px; margin-left: 20px" flex ng-show="app.addons.addonsConfig['sendgrid'].from && app.addons.addonsConfig['sendgrid'].apikey">
             Emails are sent from <strong>{{app.addons.addonsConfig['sendgrid'].from}}</strong> with <strong>Sendgrid</strong>
             <br>using the following sendgrid APIKey: <strong>{{app.addons.addonsConfig['sendgrid'].apikey.substr(0, 5) + '*****' + app.addons.addonsConfig['sendgrid'].apikey.substr(-5, 5)}}</strong>
             <br><a href="#">Edit the configuration</a>
         </div>
-        <div style="padding-top: 15px; margin-left: 20px" flex ng-show="app.addons.addonsConfig['email'].from && app.addons.addonsConfig['email'].apikey">
+        <div style="padding-top: 15px; margin-left: 20px" flex ng-show="app.addons.addonsConfig['sendgrid'].from && app.addons.addonsConfig['sendgrid'].apikey">
             You need to configure this addon to send email in your application.
             <br><a href="#">Configure it now!</a>
         </div>
