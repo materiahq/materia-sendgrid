@@ -26,7 +26,6 @@
     ]
   },
   "dependencies": {
-    "node-mailjet": "^3.0.6",
     "sendgrid": "^4.7.1"
   }
 }
