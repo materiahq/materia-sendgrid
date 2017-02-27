@@ -1,15 +1,15 @@
-const SengridSender = require('../../lib/sendgrid')
+const SendgridSender = require('../../lib/sendgrid')
 
 class EmailModel {
 	constructor(app, entity) {
 		this.app = app;
 		this.entity = entity;
-		this.emailSender = new SendgridSender(app.addons.addonsConfig['sendgrid'].apikey, app.addons.addonsConfig['sendgrid'].from)
+		this.emailSender = new SendgridSender(app.addons.addonsConfig['@materia/sendgrid'].apikey, app.addons.addonsConfig['@materia/sendgrid'].from)
 	}
 
 	send(params) {
 		return this.emailSender.send(params).then(() => {
-			params.from = this.app.addons.addonsConfig['sendgrid'].from
+			params.from = this.app.addons.addonsConfig['@materia/sendgrid'].from
 			params.date_sent = new Date()
 			return this.entity.getQuery('create')
 				.run(params)
