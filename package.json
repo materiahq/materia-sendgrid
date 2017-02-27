@@ -1,0 +1,32 @@
+{
+  "name": "@materia/sendgrid",
+  "version": "0.1.0",
+  "description": "Send emails in your application using Sendgrid",
+  "main": "index.js",
+  "scripts": {
+    "start": "materia start --prod",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "materia": {
+    "display_name": "Sendgrid",
+    "logo": "https://pbs.twimg.com/profile_images/740945717477380096/kQ_6nwmP.jpg",
+    "setup": [
+      {
+        "name": "apikey",
+        "description": "Enter your apikey",
+        "type": "string"
+      },
+      {
+        "name": "from",
+        "description": "Enter the email address (sender) attached with your apikey",
+        "type": "string"
+      }
+    ]
+  },
+  "dependencies": {
+    "node-mailjet": "^3.0.6",
+    "sendgrid": "^4.7.1"
+  }
+}
