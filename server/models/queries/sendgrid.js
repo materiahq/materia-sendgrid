@@ -1,6 +1,6 @@
 const SendgridSender = require('../../lib/sendgrid')
 
-class EmailModel {
+class SendgridModel {
 	constructor(app, entity) {
 		this.app = app;
 		this.entity = entity;

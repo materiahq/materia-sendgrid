@@ -1,4 +1,4 @@
-<div ng-controller="EmailCtrl" layout="column" flex>
+<div ng-controller="SendgridCtrl" layout="column" flex>
     <div layout="row">
         <div md-colors="{background: 'deep-orange'}" style="width: 120px; padding: 10px 0 18px">
             <div style="text-align: center; font-size: 2.5em">{{nbEmails}}</div>
@@ -9,7 +9,7 @@
             <br>using the following sendgrid APIKey: <strong>{{app.addons.addonsConfig['@materia/sendgrid'].apikey.substr(0, 5) + '*****' + app.addons.addonsConfig['@materia/sendgrid'].apikey.substr(-5, 5)}}</strong>
             <br><a href="#">Edit the configuration</a>
         </div>
-        <div style="padding-top: 15px; margin-left: 20px" flex ng-show="app.addons.addonsConfig['@materia/sendgrid'].from && app.addons.addonsConfig['@materia/sendgrid'].apikey">
+        <div style="padding-top: 15px; margin-left: 20px" flex ng-show="! app.addons.addonsConfig['@materia/sendgrid'].from || !app.addons.addonsConfig['@materia/sendgrid'].apikey">
             You need to configure this addon to send email in your application.
             <br><a href="#">Configure it now!</a>
         </div>
