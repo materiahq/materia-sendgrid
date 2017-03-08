@@ -4,7 +4,7 @@ let sendgrid = angular.module('sendgrid', [
     'ngMessages',
     'ngAnimate'
 ]).controller('SendgridCtrl', ($scope, $rootScope) => {
-    $rootScope.app.entities.get('email').getQuery('latest').run().then(emails => {
+    $rootScope.app.entities.get('sendgrid').getQuery('latest').run().then(emails => {
         $scope.emails = emails.data
         $scope.nbEmails = emails.count
         $scope.$apply()

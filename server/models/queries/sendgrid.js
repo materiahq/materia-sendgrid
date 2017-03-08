@@ -17,4 +17,4 @@ class SendgridModel {
 	}
 }
 
-module.exports = EmailModel;
+module.exports = SendgridModel;
