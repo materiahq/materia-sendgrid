@@ -1,6 +1,6 @@
 {
   "name": "@materia/sendgrid",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "description": "Send emails in your application using Sendgrid",
   "keywords": [
     "email",
