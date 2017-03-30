@@ -6,7 +6,7 @@
         </div>
         <div style="padding-top: 15px; margin-left: 20px" flex ng-show="app.addons.addonsConfig['@materia/sendgrid'].from && app.addons.addonsConfig['@materia/sendgrid'].apikey">
             Emails are sent from <strong>{{app.addons.addonsConfig['@materia/sendgrid'].from}}</strong> with <strong>Sendgrid</strong>
-            <br>using the following sendgrid APIKey: <strong>{{app.addons.addonsConfig['@materia/sendgrid'].apikey.substr(0, 5) + '*****' + app.addons.addonsConfig['@materia/sendgrid'].apikey.substr(-5, 5)}}</strong>
+            <br>using the following Sendgrid APIKey: <strong>{{app.addons.addonsConfig['@materia/sendgrid'].apikey.substr(0, 5) + '*****' + app.addons.addonsConfig['@materia/sendgrid'].apikey.substr(-5, 5)}}</strong>
             <br><a style="cursor:pointer; text-decoration: underline;" ng-click="setup()">Edit the configuration</a>
         </div>
         <div style="padding-top: 15px; margin-left: 20px" flex ng-show="! app.addons.addonsConfig['@materia/sendgrid'].from || !app.addons.addonsConfig['@materia/sendgrid'].apikey">
