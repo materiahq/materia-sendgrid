@@ -1,4 +1,4 @@
-<div fxFlex fxLayout="column">
+<div fxFlex fxLayout="column" *ngIf="app.addons.addonsConfig['@materia/sendgrid'] else noConfiguration">
 	<div class="sendgrid-header" fxLayout="row">
 		<div class="email-sent-counter">
 			<div class="counter">{{nbEmails || 0}}</div>
@@ -46,3 +46,9 @@
         </mat-list>
 	</mat-card>
 </div>
+<ng-template #noConfiguration>
+	<div fxLayout="column" fxFlex fxLayoutAlign="center center">
+		<p>Sendgrid addon is not configured yet.</p>
+		<button mat-raised-button color="primary">Configure</button>
+	</div>
+</ng-template>
