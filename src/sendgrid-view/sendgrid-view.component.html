@@ -1,17 +1,15 @@
-<div fxFlex fxLayout="column" *ngIf="settings else noConfiguration">
+<div fxFlex fxLayout="column" *ngIf="settings.from && settings.apikey else noConfiguration">
 	<div class="sendgrid-header" fxLayout="row">
 		<div class="email-sent-counter">
-			<div class="counter">{{nbEmails || 0}}</div>
-			<div>email{{ nbEmails > 1 ? 's' : '' }} sent</div>
+			<div style="text-align: center; font-size: 2.5em">{{ nbEmails || 0 }}</div>
+			<div style="text-align: center">email{{ nbEmails > 1 ? 's' : '' }} sent</div>
 		</div>
 		<div class="header-content" fxFlex *ngIf="settings.from && settings.apikey">
 			Emails are sent from <strong>{{settings.from}}</strong>
-			<br>with the APIKey <strong>{{settings.apikey.substr(0, 5) + '*****' + settings.apikey.substr(-5, 5)}}</strong>
-			<br><a (click)="setup()">Edit the configuration</a>
-		</div>
-		<div class="header-content" fxFlex *ngIf="! settings.from || !settings.apikey">
-			You need to configure this addon to send email in your application.
-			<br><a (click)="setup()">Configure it now!</a>
+			<br>
+			with the APIKey <strong>{{settings.apikey.substr(0, 5) + '*****' + settings.apikey.substr(-5, 5)}}</strong>
+			<br>
+			<span class="link" (click)="openSetup.emit()">Edit the configuration</span>
 		</div>
 	</div>
 
@@ -19,13 +17,13 @@
 		<mat-card-header fxLayout="row">
 			<h3>Latest emails sent</h3>
 			<div fxFlex></div>
-			<button matTooltip="Send an email" *ngIf="settings.from && settings.apikey" (click)="send($event)" mat-icon-button>
+			<button mat-icon-button matTooltip="Send an email" matTooltipPosition="left" *ngIf="settings.from && settings.apikey" (click)="openSendDialog()">
 				<mat-icon>send</mat-icon>
 			</button>
         </mat-card-header>
         <div *ngIf="! emails || emails.length == 0" fxFlex fxLayout="column" fxLayoutAlign="center center">
             <div style="margin-bottom: 16px;"><strong>No email has been sent yet</strong></div>
-            <button mat-raised-button color="primary" (click)="send($event)">Send your first email now</button>
+            <button mat-raised-button color="primary" (click)="openSendDialog()">Send your first email now</button>
         </div>
         <mat-list *ngIf="emails && emails.length > 0">
             <div *ngFor="let email of emails">
@@ -49,6 +47,21 @@
 <ng-template #noConfiguration>
 	<div fxLayout="column" fxFlex fxLayoutAlign="center center">
 		<p>Sendgrid addon is not configured yet.</p>
-		<button mat-raised-button color="primary">Configure</button>
+		<button mat-raised-button color="primary" (click)="openSetup.emit()">Configure</button>
 	</div>
+</ng-template>
+<ng-template #sendDialog>
+	<form fxLayout="column">
+		<h1>Send an email</h1>
+		<mat-form-field>
+			<input matInput placeholder="Subject" [formControl]="subjectControl">
+		</mat-form-field>
+		<mat-form-field>
+			<textarea matInput placeholder="Body" [formControl]="bodyControl"></textarea>
+		</mat-form-field>
+		<mat-form-field>
+			<input matInput placeholder="To" [formControl]="toControl">
+		</mat-form-field>
+	</form>
+	<button mat-raised-button color="primary" (click)="send()">Send</button>
 </ng-template>
