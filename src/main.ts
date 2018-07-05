@@ -1,0 +1,1 @@
+export { SendgridViewComponent } from "./sendgrid-view/sendgrid-view.component";
