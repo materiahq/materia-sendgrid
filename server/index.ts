@@ -7,14 +7,16 @@ export default class Sendgrid {
 
     public static installSettings = [
         {
-          "name": "apikey",
-          "description": "Enter your apikey",
-          "type": "string"
+          name: "apikey",
+          description: "Enter your apikey",
+          type: "string",
+          required: true
         },
         {
-          "name": "from",
-          "description": "Enter the email address (sender) attached with your apikey",
-          "type": "string"
+          name: "from",
+          description: "Enter the email address (sender) attached with your apikey",
+          type: "string",
+          required: true
         }
       ]
 
