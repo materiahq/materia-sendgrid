@@ -89,6 +89,7 @@ export class SendgridViewComponent implements OnInit {
 
   closeSendDialog() {
     this.dialogRef.close();
+    this.fetchStats();
   }
 
   private runQuery(entity: string, query: string, params?: any) {
