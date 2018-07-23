@@ -1,0 +1,13 @@
+<form fxLayout="column">
+	<h1>Send an email</h1>
+	<mat-form-field>
+		<input matInput placeholder="Subject" [formControl]="subjectControl">
+	</mat-form-field>
+	<mat-form-field>
+		<textarea matInput placeholder="Body" [formControl]="bodyControl"></textarea>
+	</mat-form-field>
+	<mat-form-field>
+		<input matInput placeholder="To" [formControl]="toControl">
+	</mat-form-field>
+</form>
+<button mat-raised-button color="primary" (click)="send()">Send</button>

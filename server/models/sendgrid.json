@@ -1,54 +1,6 @@
 {
+	"virtual": true,
 	"fields": [
-		{
-			"name": "id_email",
-			"type": "number",
-			"read": true,
-			"write": false,
-			"primary": true,
-			"unique": true,
-			"required": true,
-			"autoIncrement": true,
-			"component": "input"
-		},
-		{
-			"name": "body",
-			"type": "text",
-			"read": true,
-			"write": true,
-			"component": "textarea"
-		},
-		{
-			"name": "to",
-			"type": "text",
-			"read": true,
-			"write": true,
-			"required": true,
-			"component": "email"
-		},
-		{
-			"name": "from",
-			"type": "text",
-			"read": true,
-			"write": true,
-			"required": true,
-			"component": "email"
-		},
-		{
-			"name": "subject",
-			"type": "text",
-			"read": true,
-			"write": true,
-			"component": "input"
-		},
-		{
-			"name": "date_sent",
-			"type": "date",
-			"read": true,
-			"write": true,
-			"required": true,
-			"component": "dateTimePicker"
-		}
 	],
 	"relations": [],
 	"queries": [
@@ -72,6 +24,11 @@
 						"name": "body",
 						"type": "text",
 						"component": "textarea"
+					},
+					{
+						"name": "html",
+						"type": "text",
+						"component": "textarea"
 					}
 				],
 				"action": "send",
@@ -79,25 +36,38 @@
 			}
 		},
 		{
-			"id": "latest",
-			"type": "findAll",
+			"id": "stats",
+			"type": "custom",
 			"opts": {
-				"select": [
-					"id_email",
-					"body",
-					"to",
-					"from",
-					"subject",
-					"date_sent"
-				],
-				"conditions": [],
-				"include": [],
-				"orderBy": [
+				"params": [
 					{
-						"field": "date_sent",
-						"desc": true
+						"name": "aggregated_by",
+						"type": "text",
+						"component": "input"
+					},
+					{
+						"name": "limit",
+						"type": "number",
+						"component": "input"
+					},
+					{
+						"name": "offset",
+						"type": "number",
+						"component": "input"
+					},
+					{
+						"name": "start_date",
+						"type": "date",
+						"component": "datePicker"
+					},
+					{
+						"name": "end_date",
+						"type": "date",
+						"component": "datePicker"
 					}
-				]
+				],
+				"action": "stats",
+				"model": "sendgrid"
 			}
 		}
 	]

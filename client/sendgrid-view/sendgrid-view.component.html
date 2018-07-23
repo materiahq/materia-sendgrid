@@ -1,0 +1,48 @@
+<div style="width: 100%" fxFlex fxLayout="column" *ngIf="settings.from && settings.apikey else noConfiguration">
+	<div class="sendgrid-header" fxLayout="row">
+		<div class="email-sent-counter">
+			<div style="text-align: center; font-size: 2.5em">{{ nbEmails || 0 }}</div>
+			<div style="text-align: center">email{{ nbEmails > 1 ? 's' : '' }} sent</div>
+		</div>
+		<div class="header-content" fxFlex *ngIf="settings.from && settings.apikey">
+			Emails are sent from <strong>{{settings.from}}</strong>
+			<br>
+			with the APIKey <strong>{{settings.apikey.substr(0, 5) + '*****' + settings.apikey.substr(-5, 5)}}</strong>
+			<br>
+			<span class="link" (click)="openSetup.emit()">Edit the configuration</span>
+		</div>
+	</div>
+
+	<mat-card fxLayout="column" fxFlex *ngIf="settings.from && settings.apikey">
+		<mat-card-header fxLayout="row">
+			<h3>Emails statistics</h3>
+			<div fxFlex></div>
+			<button mat-raised-button (click)="openSendDialog()">
+				<mat-icon>send</mat-icon>
+				Send a test email
+			</button>
+		</mat-card-header>
+		<div fxFlex fxLayout="column" style="margin-top: 16px;">
+			<ngx-charts-line-chart
+				[scheme]="{ domain: ['#2196F3', '#4CAF50', '#8BC34A', '#FFC107', '#FF5722'] }"
+				[results]="data"
+				[gradient]="false"
+				[xAxis]="true"
+				[yAxis]="true"
+				[legend]="true"
+				[showXAxisLabel]="false"
+				[showYAxisLabel]="false">
+			</ngx-charts-line-chart>
+		</div>
+	</mat-card>
+</div>
+<ng-template #noConfiguration>
+	<div fxLayout="column" fxFlex fxLayoutAlign="center center">
+		<p>Sendgrid addon is not configured yet.</p>
+		<button mat-raised-button color="primary" (click)="openSetup.emit()">Configure</button>
+	</div>
+</ng-template>
+<ng-template #sendDialog>
+	<materia-send-email [baseUrl]="baseUrl" (close)="closeSendDialog()">
+	</materia-send-email>
+</ng-template>
